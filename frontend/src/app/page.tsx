@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useRef } from 'react';
+import { jsPDF } from 'jspdf';
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -38,15 +39,25 @@ ${formData.party2Name} of ${formData.party2Company} (“Party 2”).
 By acknowledging this electronic agreement, both parties accept these terms.`;
 
   const downloadDocument = () => {
-    const blob = new Blob([documentContent], { type: 'text/markdown' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `Mutual_NDA_${formData.party1Company}_${formData.party2Company}.md`;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    const doc = new jsPDF();
+    const splitText = doc.splitTextToSize(documentContent, 180);
+    doc.setFont("times", "normal");
+    doc.setFontSize(11);
+    
+    // Add text with simple pagination if it exceeds the page length
+    let y = 20;
+    const pageHeight = doc.internal.pageSize.height;
+    
+    splitText.forEach((line: string) => {
+      if (y > pageHeight - 20) {
+        doc.addPage();
+        y = 20;
+      }
+      doc.text(line, 15, y);
+      y += 6; // line spacing
+    });
+
+    doc.save(`Mutual_NDA_${formData.party1Company.replace(/\s+/g, '_')}_${formData.party2Company.replace(/\s+/g, '_')}.pdf`);
   };
 
   return (
