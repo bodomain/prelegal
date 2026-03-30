@@ -1,79 +1,24 @@
-./gemini
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-.venv
-venv/
-ENV/
-env/
-.venv/
-
-# FastAPI
-.env
-.env.local
-.env.*.local
-
-# Poetry
-poetry.lock
-
-# Pytest
-.pytest_cache/
-.coverage
-htmlcov/
-
-# IDEs
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-*.sublime-project
-*.sublime-workspace
-
-# Next.js
-node_modules/
-/.next/
-/out/
-.next/
+# Logs
+logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
-.pnpm-store/
-.turbo/
-.vercel
-.env.local
-.env.*.local
 
-# Build outputs
-dist/
-build/
+node_modules
+dist
+dist-ssr
+*.local
 
-# OS
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
 .DS_Store
-Thumbs.db
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
